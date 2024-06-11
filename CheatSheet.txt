@@ -1,0 +1,44 @@
+// Add-Migration
+// Update-Database
+
+///////////////////////
+fetch('https://localhost:7125/api/auth/protected', {
+  method: 'GET',
+  headers: {
+    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdHJpbmciLCJqdGkiOiJhODU3ZGFjNC0yM2ZiLTQ4NTgtYTliOS1jMDZjNDMyOTRkNWUiLCJleHAiOjE3MTc2OTE0NTJ9.xdJPUaIhy6MpQopLBdzCLG68YGjyYlwDttAZBLB5zJE'
+  }
+})
+.then(response => response)
+.then(data => console.log(data))
+.catch(error => console.error('Error:', error));
+
+//////////////////
+const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJzdHJpbmciLCJqdGkiOiIzM2U0NmRkYi0yMjg3LTRiNDgtYmFiOC1kZGI1OWIyMjQ5MGMiLCJleHAiOjE3MTc2OTM1NTQsImlzcyI6Imh0dHBzOi8vbG9jYWxob3N0OjcxMjUvIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NzEyNS8ifQ._0MJ7vHAI1WYBKGSgKdI6_tzvENLyAoOVhq67XzHY1Y';
+
+fetch('https://localhost:7125/api/todoitems/items', {
+  method: 'GET',
+  headers: {
+    'Authorization': `Bearer ${token}`,
+    'Content-Type': 'application/json'
+  }
+})
+.then(response => {
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response; // Assuming the API returns JSON
+})
+.then(data => {
+  console.log('Success:', data);
+})
+.catch(error => {
+  console.error('Error:', error);
+});
+
+/////
+fetch('http://localhost:5050/api/TodoItems/EEE/1', {
+  method: 'GET',
+  headers: {
+    'Content-Type': 'application/json',
+  }
+})
